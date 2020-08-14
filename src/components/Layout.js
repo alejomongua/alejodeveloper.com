@@ -6,9 +6,14 @@ import './all.sass'
 
 const TemplateWrapper = ({ children }) => (
   <div>
-    <Helmet title="Home | Gatsby + WordPress" />
+    <Helmet
+      title="AlejoDeveloper, linux, programación y más" />
     <Navbar />
     <div>{children}</div>
+    <footer>
+      &copy; AlejoDeveloper.
+      {(new Date()).getFullYear()}
+    </footer>
   </div>
 )
 

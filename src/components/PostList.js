@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link, graphql } from 'gatsby'
+import { formatearFecha } from '../utils/fechas'
 
 export default class IndexPage extends React.Component {
   render() {
@@ -24,7 +25,7 @@ export default class IndexPage extends React.Component {
                 </Link>
                 <span> &bull; </span>
                 <small>
-                  {post.date} - posted by{' '}
+                  {`${formatearFecha(post.date)}  - publicado por `}
                   <Link to={`/author/${post.author.slug}`}>
                     {post.author.name}
                   </Link>
@@ -37,7 +38,7 @@ export default class IndexPage extends React.Component {
                   }}
                 />
                 <Link className="button is-small" to={post.slug}>
-                  Keep Reading →
+                  Seguir leyendo →
                 </Link>
               </div>
             </div>

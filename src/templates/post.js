@@ -2,18 +2,23 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import { graphql, Link } from 'gatsby'
+import ReactHtmlParser from 'react-html-parser'
 import Layout from '../components/Layout'
+import { formatearFecha } from '../utils/fechas'
 
 export const BlogPostTemplate = ({
   content,
-  categories,
   tags,
   title,
   date,
   author,
+  yoastHead
 }) => {
   return (
     <section className="section">
+      <Helmet>
+        { ReactHtmlParser(yoastHead) }
+      </Helmet>
       <div className="container content">
         <div className="columns">
           <div className="column is-10 is-offset-1">
@@ -23,23 +28,9 @@ export const BlogPostTemplate = ({
             <div dangerouslySetInnerHTML={{ __html: content }} />
             <div style={{ marginTop: `4rem` }}>
               <p>
-                {date} - posted by{' '}
+                {`${formatearFecha(date)} - publicado por `}
                 <Link to={`/author/${author.slug}`}>{author.name}</Link>
               </p>
-              {categories && categories.length ? (
-                <div>
-                  <h4>Categories</h4>
-                  <ul className="taglist">
-                    {categories.map(category => (
-                      <li key={`${category.slug}cat`}>
-                        <Link to={`/categories/${category.slug}/`}>
-                          {category.name}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ) : null}
               {tags && tags.length ? (
                 <div>
                   <h4>Tags</h4>
@@ -78,6 +69,7 @@ const BlogPost = ({ data }) => {
         title={post.title}
         date={post.date}
         author={post.author}
+        yoastHead={post.yoast_head}
       />
     </Layout>
   )
@@ -96,8 +88,9 @@ export const pageQuery = graphql`
     id
     slug
     content
-    date(formatString: "MMMM DD, YYYY")
+    date
     title
+    yoast_head
   }
   query BlogPostByID($id: String!) {
     wordpressPost(id: { eq: $id }) {
@@ -105,7 +98,7 @@ export const pageQuery = graphql`
       title
       slug
       content
-      date(formatString: "MMMM DD, YYYY")
+      date
       categories {
         name
         slug
@@ -118,6 +111,7 @@ export const pageQuery = graphql`
         name
         slug
       }
+      yoast_head
     }
   }
 `
