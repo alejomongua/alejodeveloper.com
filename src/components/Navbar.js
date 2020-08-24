@@ -18,11 +18,11 @@ const Navbar = () => (
     render={data => (
       <nav className="navbar is-transparent">
         <div className="container">
-          <div className="navbar-brand">
-            <Link to="/" className="navbar-item">
+          <h3 className="navbar-brand">
+            <Link to="/" className="navbar-item has-text-primary">
               {'<AlejoDeveloper />'}
             </Link>
-          </div>
+          </h3>
           <div className="navbar-start">
             {data.allWordpressPage.edges.map(edge => (
               <Link

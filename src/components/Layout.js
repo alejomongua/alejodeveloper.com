@@ -6,13 +6,12 @@ import './all.sass'
 
 const TemplateWrapper = ({ children }) => (
   <div>
-    <Helmet
-      title="AlejoDeveloper, linux, programación y más">
+    <Helmet title="AlejoDeveloper, linux, programación y más">
       <html lang="es" />
     </Helmet>
     <Navbar />
     <div>{children}</div>
-    <footer>
+    <footer className='container'>
       &copy; AlejoDeveloper.
       {(new Date()).getFullYear()}
     </footer>

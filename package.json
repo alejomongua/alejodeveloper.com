@@ -1,8 +1,8 @@
 {
-  "name": "gatsby-starter-wordpress",
-  "description": "Gatsby v2 starter for WordPress",
+  "name": "alejodeveloper.com-blog",
+  "description": "Blog de programación",
   "version": "0.1.0",
-  "author": "GatsbyCentral.com",
+  "author": "alejodeveloper.com",
   "dependencies": {
     "bulma": "^0.7.5",
     "gatsby": "^2.24.47",
